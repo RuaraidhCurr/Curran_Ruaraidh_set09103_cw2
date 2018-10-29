@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <script type="text/javascript"; src="{{ url_for('static', filename='java.js') }}"></script>
+    <title>CW_2</title>
+</head>
+<body>
+    <nav class = "navigation">
+        <ul>
+            <li><a href="{{ url_for('home') }}"><p>Home</p></a></li> ··
+            <li><a href="/"><p>Page 1</p></a></li> ·
+            <li><a href="/"><p>Page 2</p></a></li> ·
+            <li><a href="/"><p>Page 3</p></a></li> ·
+            <li><a href="/"><p>Page 4</p></a></li>
+        </ul>
+    </nav>
+    <div class="grid_containter">
+            {% block content %}{% endblock %}
+    </div>
+</body>
+<footer class="footer">
+        <div class="footer-right">
+
+        </div>
+
+        <div class="footer-left">
+
+            <p class="footer-links">
+                <a href="/">Home</a>
+                ·
+                <a href="#">Back to Top</a>
+            </p>
+
+            <p>Copyright: Ruaraidh Curran &copy; 2018</p>
+        </div>
+    </footer>
+</html>

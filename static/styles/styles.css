@@ -1,0 +1,134 @@
+html, body {
+    margin: 0;
+    padding: 0; 
+}
+
+.navigation{
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    top: 0;
+    min-height: 60px;
+    background-color: #18181a;
+    margin: 0;
+}
+.navigation ul{
+    color: white;
+    margin: 0;
+    list-style-type: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15vw;
+}
+.navigation ul li {
+    display: inline-block;
+    list-style: none;
+}
+.navigation ul li a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+nav ul li a:hover {
+    color: #8f9296;
+    text-decoration: none;
+}
+
+.grid_containter{
+    width:100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns:
+    [full-start] 15vw 
+    [content-start] repeat(10, 1fr) [content-end] 15vw 
+    [full-end];
+    /* Content starts at column 2 end at column 12 */
+    grid-auto-rows: 50px;
+}
+
+.header{
+    margin: 0;
+    padding: 0;
+    grid-column: content-start / content-end;
+    grid-row: 2 / 3;
+}
+
+.regBackground{
+background-image: url("../media/adventure-alpine-background-355747.jpg");
+height: 90vh;
+background-size: cover;
+background-position: center;
+width: 100vw;
+}
+.register_form_container{
+    position: relative;
+    z-index: 1;
+    margin-top: 25vh;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 1.5rem;
+    height: 210px;
+    background-color: #dfdfdf98;
+    filter: blur(8px);
+}
+.register_form{
+    transform: translate(0, -235px);
+    z-index: +1;
+    margin-top: 0vh;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 1.5rem;
+    position: relative;
+}
+.register_form .text_box{
+    background-color: #8383838f;
+}
+
+.myButton {
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	color:#666666;
+	font-weight:bold;
+	padding:3px 12px;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.footer{
+    position: fixed;
+   font: normal 16px sans-serif;
+   background-color: #292c2f;
+   width: 100%;
+   bottom: 0;
+}
+.footer .footer-left{
+    position: bottom;
+    margin: 0;
+    padding-left: 15vw;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.footer .footer-left p{
+    margin: 0;
+    padding: 0;
+    color: #8f9296;
+    font-size: 14px;
+}
+.footer .footer-left a{
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+}
