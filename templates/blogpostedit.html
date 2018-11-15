@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regBackground"></div>
+<div class="blogpostcontainer"></div>
+<form class="blogpost" method="POST" action="{{ url_for('editblogpost') }}">
+    <h4>Edit Title:</h4>
+    <input type="text" class="uploadtitle" name="title" value="{{ postdata[2] }}">
+    <p>Edit Content:</p>
+    <textarea type="text" class="uploadcontent" name="content">{{ postdata[3] }}</textarea><br>
+    <input class= "profileupdatebtn" type="submit" value="submit">
+</form>
+{% endblock content %}

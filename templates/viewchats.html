@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regBackground"></div>
+<div class="blogpostscontainer2">
+        {% for row in rows %}
+        <div class="userprofilecontainer">
+            <a href="/chat/{{ row.chat_num }}"><h3>Chat {{ row.chat_num }}</h3></a>
+            <p>Between user:{{ row.user1_id }} and user:{{ row.user2_id }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

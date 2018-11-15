@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regBackground"></div>
+    <div class="profilecontainer"></div>
+        <div class="profilepiccontainer">
+            <img src="/{{ profilepicurl }}" alt="No Profile Picture">
+        </div>
+        <button class= "ppuploadbtn"><a href="{{ url_for('profilepic') }}">Upload profile pic</a></button>
+        <div class="name">
+            {{ firstname }} {{ lastname }}
+        </div>
+        <div class="email">
+            {{ useremail }}
+        </div>
+        <div class="blurb">
+            {{ blurb }}
+        </div>
+        <button class = "editprofile"><a href="{{url_for('editprofile')}}">Edit Profile</a></button>
+        <div class="facebook">
+            <a target="_blank" rel="noopener noreferrer" class ="facebooka" href="////{{facebooklink}}">
+                <img src="{{ url_for('static', filename='media/icons/facebooklogo.png') }}"/>
+            </a>
+        </div>
+        <div class="twitter">
+            <a target="_blank" rel="noopener noreferrer" class ="twittera" href="////{{twitterlink}}">
+                <img src="{{ url_for('static', filename='media/icons/twitterlogo.png') }}"/>
+            </a>
+        </div>
+        <div class="instergram">
+            <a target="_blank" rel="noopener noreferrer" class ="instergrama" href="////{{instagramlink}}">
+                <img src="{{ url_for('static', filename='media/icons/Instagramlogo.png') }}"/>
+            </a>
+        </div>
+        <div class="github">
+            <a target="_blank" rel="noopener noreferrer" class ="githuba" href="////{{githublink}}">
+                <img src="{{ url_for('static', filename='media/icons/githublogo.png') }}"/>
+            </a>
+        </div>
+
+{% endblock content %}

@@ -4,17 +4,28 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <script type="text/javascript"; src="{{ url_for('static', filename='java.js') }}"></script>
+    <script type="text/javascript"; src="{{ url_for('static', filename='jquery-3-3-1.js') }}"></script>
     <title>CW_2</title>
 </head>
 <body>
     <nav class = "navigation">
-        <ul>
+        <ul class = "left">
             <li><a href="{{ url_for('home') }}"><p>Home</p></a></li> ··
-            <li><a href="/"><p>Page 1</p></a></li> ·
-            <li><a href="/"><p>Page 2</p></a></li> ·
-            <li><a href="/"><p>Page 3</p></a></li> ·
-            <li><a href="/"><p>Page 4</p></a></li>
+            <li><a href="{{ url_for('viewallposts') }}"><p>View posts</p></a></li> ·
+            <li><a href="{{ url_for('queryblogs') }}"><p>Search for posts</p></a></li> ·
+            <li><a href="{{ url_for('searchpeople') }}"><p>Search Users</p></a></li> ·
         </ul>
+        {% if 'useremail' in session %}
+        <ul class = "right">
+            <li><a href="{{ url_for('viewchats') }}">View chats</a></li>
+            <li><a href="{{ url_for('userprofile') }}"><p>· View Profile ·</p></a></li>
+            <li><a href="{{ url_for ('logout') }}"><p>· logout ·</p></a></li>
+        </ul>
+        {% else %}
+        <ul class = "right">
+            <li><a href="{{ url_for('login') }}"><p>· login ·</p></a></li>
+        </ul>
+        {% endif %}
     </nav>
     <div class="grid_containter">
             {% block content %}{% endblock %}

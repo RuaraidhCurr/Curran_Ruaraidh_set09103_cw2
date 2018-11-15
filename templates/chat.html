@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regBackground"></div>
+<div class = "messagewrapper">
+{% for x in messages %}
+<p class = "message">{{ x }}</p>
+{% endfor %}
+</div>
+
+<form class = "chattext" method ="POST" >
+    <input type="text" name="chatcontent" placeholder="Enter Message Here...">
+    <input type="submit">
+</form>
+{% endblock content %}
