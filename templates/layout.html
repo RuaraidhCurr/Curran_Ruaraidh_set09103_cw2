@@ -28,6 +28,16 @@
         {% endif %}
     </nav>
     <div class="grid_containter">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flash_messages">
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
             {% block content %}{% endblock %}
     </div>
 </body>

@@ -13,8 +13,7 @@ app.config.from_pyfile("config.cfg")
 mail = Mail(app)
 s = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
-
-# app.logger.addHandler(file_handler)
+app.logger.addHandler(file_handler)
 
 # # ERROR LOG TEST
 # @app.route("/errortest/")
@@ -152,7 +151,7 @@ def emailconfirm(token):
         return "<h1> The token is expired</h1>"
     cur.execute("UPDATE users SET confirmedemail = 1 WHERE useremail =?", [token])
     db.commit()
-    flash("Email verified")
+    flash("Email verified!")
     return redirect(url_for("home"))
 
 #Log in screen
@@ -161,7 +160,6 @@ def login():
     db = get_db()
     cur = db.cursor()
     if request.method == "POST":
-        print(request.form["useremail"], request.form["password"])
         # Checks to see if the sucessful login params were met
         if verified_login(request.form["useremail"], request.form["password"]):
             # stores flash message for sucseful login
@@ -193,7 +191,6 @@ def login():
                 session["profilepic"] = defaultpp
             else:
                 session["profilepic"] = str(profilepic)
-
             print("login sucssful")
             return redirect(url_for("home"))
         else:
@@ -209,6 +206,7 @@ def logout():
     session.pop("useremail", None)
     session.pop("user_id", None)
     # redirects to login
+    flash("Logged out")
     return redirect(url_for("login"))
 
 @app.route("/Home/")
@@ -400,7 +398,6 @@ def blogpost():
             flash("you need to verify your email before posting")
             return redirect(url_for("home"))
         else:
-            print("verified")
             return render_template('blogpost.html')
     else:
         flash("Please log in and try again")
@@ -420,6 +417,7 @@ def uploadpost():
         "INSERT INTO posts (user_id, title, content, auther, timestamp) values (?,?,?,?,?)", (session["user_id"], title, content, auther, timestamp))
         db.commit()
         print("success")
+        flash("Post successfully uploaded!")
         return (timestamp)
     else:
         return redirect(url_for("home"))

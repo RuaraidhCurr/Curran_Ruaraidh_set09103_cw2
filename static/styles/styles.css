@@ -380,6 +380,8 @@ height: 90vh;
 background-size: cover;
 background-position: center;
 width: 100vw;
+grid-column-start: 1;
+grid-row-start: 1;
 }
 
 .regBackground1{
@@ -616,4 +618,19 @@ width: 100vw;
     display: inline-block;
     text-decoration: none;
     color: #ffffff;
+}
+
+
+.flash_messages {
+    height: inherit;
+    grid-column: 1/2;
+    background-color: rgba(184, 0, 0, 0.514);
+    color: white;
+    margin-left: 20px;
+    text-align: center;
+    border-radius: 15px 50px 30px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    z-index: +10;
 }
