@@ -1,6 +1,10 @@
 html, body {
     margin: 0;
-    padding: 0; 
+    padding: 0;
+    background-attachment: fixed;
+    background-image: url("../media/adventure-alpine-background-355747.jpg");
+    background-size: cover;
+    background-position: center;
 }
 .messagewrapper{
     grid-column: 3 / 6;
@@ -21,8 +25,8 @@ html, body {
     text-align: right;
 }
 .chatbtn{
-    grid-column: 9 / 10;
-    grid-row: 6;
+    grid-column: 8 / 9;
+    grid-row: 8;
     text-align: center;
 }
 .navigation{
@@ -35,23 +39,18 @@ html, body {
 }
 .navigation .left{
     color: white;
-    /* width: 35%; */
     display: inline-block;
     margin: 0;
     list-style-type: none;
     padding-top: 10px;
-    /* padding-bottom: 10px; */
     padding-left: 20vw;
 }
 .navigation .right{
     color: white;
     margin: 0;
-    /* margin-right: 20vw; */
     display: inline-block;
     padding-left: 20vw;
     list-style-type: none;
-    /* padding-top: 10px; */
-    /* padding-bottom: 10px; */
 }
 .navigation li {
     display: inline-block;
@@ -78,7 +77,6 @@ nav a:hover {
     [full-start] 15vw 
     [content-start] repeat(10, 1fr) [content-end] 15vw 
     [full-end];
-    /* Content starts at column 2 end at column 12 */
     grid-auto-rows: 50px;
 }
 .querypostform{  
@@ -91,15 +89,27 @@ nav a:hover {
     margin: 0;
     padding: 0;
     grid-column: content-start / content-end;
-    grid-row: 1 / 18;
-    background-color: rgba(94, 94, 94, 0.7);
+    height: -webkit-fill-available;
+    background-color: rgba(94, 94, 94, 0.7);display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    padding-top: 100px;
+}
+.profilecontainer1{
+    margin: 0;
+    padding: 0;
+    grid-column: content-start / content-end;
+    height: -webkit-fill-available;
+    background-color: rgba(94, 94, 94, 0.7);display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: 50px;
 }
 
 .userpost{
     margin: 0;
     padding: 0;
-    grid-column: 5 / 9;
-    grid-row-start: span 4;
+    grid-column: 3 / 8;
+    grid-row-start: 9;
+    grid-row: span 3;
 }
 
 .singlepost{
@@ -112,6 +122,11 @@ nav a:hover {
     padding: 3px;
     background-color: rgba(94, 94, 94, 0.7);
     text-align: center;
+}
+.usersearch{
+    grid-column: 6/8;
+    text-align: center;
+    margin-top: 25vh;
 }
 .singlepost1{
     grid-column: 5 / 8;
@@ -156,19 +171,39 @@ nav a:hover {
     padding: 0;
     grid-column: content-start / content-end;
     background-color: rgba(94, 94, 94, 0.7);
-    height: 100vh;
+    grid-row-start: 1;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding-bottom: 0px;
 }
+
 .blogpostscontainer2{
     margin: 0;
     padding: 0;
     grid-column: content-start / content-end;
     background-color: rgba(94, 94, 94, 0.7);
-    height: 100vh;
+    height: fit-content;
     display: grid;
     grid-template-columns: repeat(5 , 1fr);
     grid-column-gap: 2rem;
+    grid-row-start: 1;
     grid-row-gap: 2rem;
-    grid-auto-rows: min-content;
+    padding-bottom: 100px;
+}
+
+.blogpostscontainer3{
+    height: -webkit-fill-available;
+    margin: 0;
+    padding: 0;
+    grid-column: content-start / content-end;
+    background-color: rgba(94, 94, 94, 0.7);
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    grid-column-gap: 2rem;
+    grid-row-start: 1;
+    grid-row-gap: 2rem;
+    padding-bottom: 100px;
 }
 .userprofilecontainer{
     grid-column: 2 / 5;
@@ -223,13 +258,16 @@ nav a:hover {
 }
 .post{
     padding: 10px;
-    grid-column: 3 / 11;
+    grid-column: 2 / 6;
     transform: translateY(-150px);
     grid-row: span 4;
     background-color: rgba(94, 94, 94, 0.7);
     outline-style: solid;
     outline-width: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+.post.num-1{
+    margin-top: 200px;
 }
 .blogpostcontent{
     padding: 5px;
@@ -258,8 +296,8 @@ nav a:hover {
 .profilepiccontainer{
     margin: 0;
     padding: 0;
-    grid-column: 3 / 5;
-    grid-row: 2 / 6;
+    grid-column: 2 / 4;
+    grid-row: 3 / 7;
 }
 
 .profilepiccontainer img{
@@ -268,8 +306,8 @@ nav a:hover {
 }
 
 .ppuploadbtn{
-    grid-column: 3 / 5;
-    grid-row: 6 / 7;
+    grid-column: 2 / 4;
+    grid-row: 7 / 8;
     font-size: 0.7rem;
     margin-top: .1rem;
     margin-left: 5.4rem;
@@ -283,10 +321,14 @@ nav a:hover {
 }
 
 .name{
-    grid-column: 6 / 10;
-    grid-row: 2 / 3;
+    grid-column: 5 / 9;
+    grid-row: 3 / 4;
     padding-top: .5rem;
     font-size: 2rem;
+}
+.name.user{
+    grid-column: 5 / 9;
+    grid-row: 3 / 4;
 }
 
 .email{
@@ -295,14 +337,21 @@ nav a:hover {
     padding-top: 1rem;
     color: #575757;
 }
+.email.user{
+    grid-column: 5 / 9;
+    grid-row: 4 / 5
+}
 
 .blurb{
-    grid-column: 6 / 9;
+    grid-column: 5 / 8;
     grid-row: 4 / 6;
     padding: 3px;
     background-color: rgba(160, 160, 160, 0.548);
     outline-style: solid;
     outline-width: 1px;
+}
+.blurb.user{
+    grid-row: 5 / 7;
 }
 
 .editprofile{
@@ -313,6 +362,9 @@ nav a:hover {
     width: 90px;
     margin-top: 3px;
 }
+.editprofile.user{
+    grid-row: 8 / 9;
+}
 .editprofile a{
     list-style: none;
     text-decoration: none;
@@ -320,8 +372,8 @@ nav a:hover {
 }
 
 .facebook{
-    grid-column: 9 / 10;
-    grid-row: 2 / 3;
+    grid-column: 8 / 9;
+    grid-row: 4 / 4;
 }
 .facebooka{
     text-decoration: none;
@@ -332,8 +384,9 @@ nav a:hover {
 }
 
 .twitter{
-    grid-column: 9 / 10;
-    grid-row: 3 / 4;
+    grid-column: 8 / 9;
+    grid-row: 5 / 5;
+
 }
 .twittera{
     text-decoration: none;
@@ -344,8 +397,8 @@ nav a:hover {
 }
 
 .instergram{
-    grid-column: 9 / 10;
-    grid-row: 4 / 5;
+    grid-column: 8 / 9;
+    grid-row: 6 / 6;
 }
 .instergrama{
     text-decoration: none;
@@ -356,8 +409,8 @@ nav a:hover {
 }
 
 .github{
-    grid-column: 9 / 10;
-    grid-row: 5 / 6;
+    grid-column: 8 / 9;
+    grid-row: 7 / 7;
 }
 .githuba{
     text-decoration: none;
@@ -373,27 +426,6 @@ nav a:hover {
     grid-column: content-start / content-end;
     grid-row: 2 / 3;
 }
-
-.regBackground{
-background-image: url("../media/adventure-alpine-background-355747.jpg");
-height: 90vh;
-background-size: cover;
-background-position: center;
-width: 100vw;
-grid-column-start: 1;
-grid-row-start: 1;
-}
-
-.regBackground1{
-    background-image: url("../media/adventure-alpine-background-355747.jpg");
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    position: fixed;
-    transform: translateY(-70px);
-    z-index: -1;
-    width: 100vw;
-    }
 
 .editprofileform{
     grid-column: 9 / 12;
@@ -494,17 +526,18 @@ grid-row-start: 1;
     color: #575757
 }
 .blogpostcontainer{
-    height: 40vh;
-    width: 40vw;
-    margin-top: 20vh;
-    margin-left: 15vw;
-    background-color: rgba(1,1,1,0.5)
+    grid-column: 5 / 9;
+    height: fit-content;
+    width: min-content;
+    margin-top: 25vh;
+    background-color: rgba(1,1,1,0.5);
+    padding: 25px;
+    
 }
 .blogpost{
     grid-column: 2;
     text-align: center;
-    margin-left: 15vw;
-    margin-top: 15vh;
+
 }
 .blogpost .profileupdatebtn{
     width: 100px;
@@ -531,15 +564,16 @@ grid-row-start: 1;
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 1.5rem;
-    height: 210px;
+    grid-column: 6 / 8;
+    height: 300px;
     background-color: #dfdfdf98;
     filter: blur(8px);
 }
 .register_form{
-    transform: translate(0, -235px);
     z-index: +1;
-    margin-top: 0vh;
+    margin-top: 25vh;
     text-align: center;
+    grid-column: 6 / 8;
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 1.5rem;
@@ -557,15 +591,16 @@ grid-row-start: 1;
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 1.5rem;
+    grid-column: 6 / 8;
     height: 210px;
     background-color: #dfdfdf98;
     filter: blur(8px);
 }
 .login_form{
-    transform: translate(0, -175px);
     z-index: +1;
-    margin-top: 0vh;
+    margin-top: 25vh;
     text-align: center;
+    grid-column: 6 / 8;
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 1.5rem;
@@ -595,11 +630,11 @@ grid-row-start: 1;
 }
 
 .footer{
-    position: fixed;
+    position: absolute;
    font: normal 16px sans-serif;
    background-color: #292c2f;
    width: 100%;
-   bottom: 0;
+   margin-top: 85%;
 }
 .footer .footer-left{
     position: bottom;
@@ -624,13 +659,16 @@ grid-row-start: 1;
 .flash_messages {
     height: inherit;
     grid-column: 1/2;
+    margin-top:20px;
     background-color: rgba(184, 0, 0, 0.514);
     color: white;
     margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 5%;
     text-align: center;
     border-radius: 15px 50px 30px;
     border-style: solid;
-    border-width: 2px;
-    border-color: white;
+    border-width: 1px;
+    border-color: black;
     z-index: +10;
 }

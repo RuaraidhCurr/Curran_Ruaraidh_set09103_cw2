@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="regBackground1"></div>
-<div class="blogpostscontainer"></div>
+<div class="blogpostscontainer">
 {% for row in rows %}
-<div class="post" href="/viewpost/{{ row.post_num }}">
+<div class="post num-{{loop.index}}" href="/viewpost/{{ row.post_num }}">
     <a class = "blogposttitle" href="/viewpost/{{ row.post_num }}">{{ row.title }}</a>
     <div class="contentcontainer">
         <p class = "blogpostcontent">{{ row.content[:15] }}...</p>
@@ -13,7 +12,8 @@
     </ul>
 </div>
 {% endfor %}
-
-
+</div>
 
 {% endblock content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">

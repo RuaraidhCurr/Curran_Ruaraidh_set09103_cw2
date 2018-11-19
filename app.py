@@ -56,9 +56,9 @@ def verified_login(useremail, password):
         else:
             logdata = None
     if logdata:
-        return False
-    else:
         return True
+    else:
+        return False
 
 def new_user(useremail):
     db = get_db()
@@ -418,7 +418,7 @@ def uploadpost():
         db.commit()
         print("success")
         flash("Post successfully uploaded!")
-        return (timestamp)
+        return redirect(url_for('viewallposts'))
     else:
         return redirect(url_for("home"))
 
@@ -566,6 +566,8 @@ def peoplequery():
         flash("Search results:")
         return render_template("usersearchresults.html", rows = rows)
     else:
+        return redirect(url_for('home'))
+    if request.method == "GET":
         return redirect(url_for('home'))
 
 @app.route("/viewchats/")

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <script type="text/javascript"; src="{{ url_for('static', filename='java.js') }}"></script>
     <script type="text/javascript"; src="{{ url_for('static', filename='jquery-3-3-1.js') }}"></script>
     <title>CW_2</title>
@@ -19,10 +17,12 @@
         <ul class = "right">
             <li><a href="{{ url_for('viewchats') }}">View chats</a></li>
             <li><a href="{{ url_for('userprofile') }}"><p>· View Profile ·</p></a></li>
+            <li><a href="{{ url_for('blogpost') }}"><p> Post Blog</p></a></li>
             <li><a href="{{ url_for ('logout') }}"><p>· logout ·</p></a></li>
         </ul>
         {% else %}
         <ul class = "right">
+            <li><a href="{{ url_for('register') }}"><p>· Register ·</p></a></li>
             <li><a href="{{ url_for('login') }}"><p>· login ·</p></a></li>
         </ul>
         {% endif %}
@@ -40,7 +40,7 @@
 
             {% block content %}{% endblock %}
     </div>
-</body>
+
 <footer class="footer">
         <div class="footer-right">
 
@@ -57,4 +57,6 @@
             <p>Copyright: Ruaraidh Curran &copy; 2018</p>
         </div>
     </footer>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</body>
 </html>

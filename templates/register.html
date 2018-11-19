@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="regBackground">
     <div class="register_form_container"></div>
         <form class = "register_form" method ="POST" action="{{ url_for('registeruser') }}">
             First / Second Name<br>
@@ -13,5 +12,4 @@
             <input class= "text_box" type="password" name="verPassword" required/><br>
             <input class= "myButton" type="submit" value="submit">
         </form>
-</div>
 {% endblock content %}

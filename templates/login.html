@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="regBackground">
     <div class="login_form_container"></div>
         <form class = "login_form" method ="POST" action="{{ url_for('login') }}">
             Email:<br> 
@@ -9,5 +8,4 @@
             <input class= "text_box" type="password" name="password" required/><br>
             <input class= "myButton" type="submit" value="Log-in">
         </form>
-</div>
 {% endblock content %}

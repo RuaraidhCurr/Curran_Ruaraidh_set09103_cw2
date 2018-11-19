@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="regBackground"></div>
-    <div class="profilecontainer"></div>
+    <div class="profilecontainer">
         <div class="profilepiccontainer">
             <img src="/{{ userdata[6] }}" alt="No Profile Picture">
         </div>
@@ -48,5 +47,5 @@
     <p class = "blogposttimestamp">{{ row[5] }}</p>
 </div>
 {% endfor %}    
-
+</div>
 {% endblock content %}
