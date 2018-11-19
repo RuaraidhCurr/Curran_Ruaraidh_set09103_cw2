@@ -186,7 +186,7 @@ def login():
             session["lastname"] = str(lastname)
             session["profilepic"] = None
             session["confirmedemail"] = confirmedemail
-            defaultpp = "static/media/default.png"
+            defaultpp = "static/media/default-profile-pic-300x300.png"
             if profilepic == None:
                 session["profilepic"] = defaultpp
             else:
