@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regBackground">
+    <div class="register_form_container"></div>
+    <form class = "register_form" method ="POST" action="{{ url_for('ppupload') }}" enctype="multipart/form-data">
+        Upload ProfilePic<br>
+        <input class= "image" type="file" name="profilepic"/><br>
+        <input class= "myButton" type="submit" value="Upload">
+    </form>
+</div>
+{% endblock content %}

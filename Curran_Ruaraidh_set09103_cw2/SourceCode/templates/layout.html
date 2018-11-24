@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript"; src="{{ url_for('static', filename='java.js') }}"></script>
+    <script type="text/javascript"; src="{{ url_for('static', filename='jquery-3-3-1.js') }}"></script>
+    <title>CW_2</title>
+</head>
+<body>
+    <nav class = "navigation">
+        <ul class = "left">
+            <li><a href="{{ url_for('home') }}"><p>Home</p></a></li> ··
+            <li><a href="{{ url_for('viewallposts') }}"><p>View posts</p></a></li> ·
+            <li><a href="{{ url_for('queryblogs') }}"><p>Search for posts</p></a></li> ·
+            <li><a href="{{ url_for('searchpeople') }}"><p>Search Users</p></a></li> ·
+        </ul>
+        {% if 'useremail' in session %}
+        <ul class = "right">
+            <li><a href="{{ url_for('viewchats') }}">View chats</a></li>
+            <li><a href="{{ url_for('userprofile') }}"><p>· View Profile ·</p></a></li>
+            <li><a href="{{ url_for('blogpost') }}"><p> Post Blog</p></a></li>
+            <li><a href="{{ url_for ('logout') }}"><p>· logout ·</p></a></li>
+        </ul>
+        {% else %}
+        <ul class = "right">
+            <li><a href="{{ url_for('register') }}"><p>· Register ·</p></a></li>
+            <li><a href="{{ url_for('login') }}"><p>· login ·</p></a></li>
+        </ul>
+        {% endif %}
+    </nav>
+    <div class="grid_containter">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flash_messages">
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+    </div>
+
+<footer class="footer">
+        <div class="footer-right">
+
+        </div>
+
+        <div class="footer-left">
+
+            <p class="footer-links">
+                <a href="/">Home</a>
+                ·
+                <a href="#">Back to Top</a>
+            </p>
+
+            <p>Copyright: Ruaraidh Curran &copy; 2018</p>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</body>
+</html>

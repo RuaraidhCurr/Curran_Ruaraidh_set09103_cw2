@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="regBackground">
+    <div class="register_form_container"></div>
+        <form class = "register_form" method ="POST" action="{{ url_for('changepassword') }}">
+            Enter Old Password<br>
+            <input class= "text_box"type="text" name="oldpass" required/><br>
+            Enter New Password:<br> 
+            <input class= "text_box" type="password" name="password" required/><br>
+            Re-enter New Password<br> 
+            <input class= "text_box" type="password" name="verpassword" required/><br>
+            <input class= "myButton" type="submit" value="submit">
+        </form>
+</div>
+{% endblock content %}

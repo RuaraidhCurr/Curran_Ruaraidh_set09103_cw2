@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="blogpostscontainer">
+{% for row in rows %}
+<div class="post num-{{loop.index}}" href="/viewpost/{{ row.post_num }}">
+    <a class = "blogposttitle" href="/viewpost/{{ row.post_num }}">{{ row.title }}</a>
+    <div class="contentcontainer">
+        <p class = "blogpostcontent">{{ row.content[:15] }}...</p>
+    </div><ul>
+    <li>Posted by: {{ row.auther }}</li>
+    <li>Posted on: {{ row.timestamp[:10] }}</li>
+    </ul>
+</div>
+{% endfor %}
+</div>
+
+{% endblock content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">

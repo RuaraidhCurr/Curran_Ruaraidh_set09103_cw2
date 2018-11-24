@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="blogpostscontainer2">
+    {% for row in rows %}
+    <div class="userprofilecontainer">
+        <a href="/user/{{ row.user_id }}"><h3>{{ row.firstname }} {{ row.lastname }}</h3></a>
+        <div class="blurbcontainer">
+            <p>{{ row.userblurb[:10] }}...</p>
+        </div>
+        <img src="/{{ row.profilepic }}" alt="No Profile Picture">
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
