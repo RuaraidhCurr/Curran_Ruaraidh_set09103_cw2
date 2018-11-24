@@ -1,8 +1,0 @@
-{% extends "layout.html" %}
-{% block content %} 
-<form class="usersearch" action="{{ url_for('peoplequery') }}" method="POST">
-    Search user by name:
-    <input type="text" name="name" placeholder="type name">
-    <input type="submit" value="Search for User">
-</form>
-{% endblock content %}
