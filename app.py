@@ -47,6 +47,7 @@ def verified_login(useremail, password):
     find_user = ("select * from users")
     cur.execute(find_user)
     logdata = cur.fetchall()
+    db.close()
     for x in logdata:
         y = x[1]
         p = x[2]
@@ -67,6 +68,7 @@ def new_user(useremail):
     findUser = ("select useremail from users")
     cur.execute(findUser)
     data = cur.fetchall()
+    db.close()
     for x in data:
         y = x[0]
         z = s.loads(y, salt="emailConfirm")
@@ -99,6 +101,7 @@ def register():
     find_user = ("select * from users")
     cur.execute(find_user)
     logdata = cur.fetchall()
+    db.close()
     return render_template("register.html")
 
 @app.route("/registeruser", methods=["GET", "POST"])
@@ -124,6 +127,7 @@ def registeruser():
                 cur.execute(
                     "INSERT INTO users (useremail, password, firstname, lastname) values (?,?,?,?)", (token, password, firstname, lastname))
                 db.commit()
+                db.close()
                 print("success")
                 msg = Message("Email Confimation", sender="cwtwoemail@gmail.com", recipients=[useremail])
                 link = url_for("emailconfirm", token=token, _external=True)
@@ -134,7 +138,6 @@ def registeruser():
         else:
             flash("passwords did not match, Please try again")
             return redirect("register")
-
     else:
         flash("Please Log in or register new user account")
     return redirect(url_for("login"))
@@ -151,6 +154,7 @@ def emailconfirm(token):
         return "<h1> The token is expired</h1>"
     cur.execute("UPDATE users SET confirmedemail = 1 WHERE useremail =?", [token])
     db.commit()
+    db.close()
     flash("Email verified!")
     return redirect(url_for("home"))
 
@@ -167,6 +171,7 @@ def login():
             sessioninfo = ("select user_id, useremail, firstname, lastname, profilepic, confirmedemail from users")
             cur.execute(sessioninfo)
             logdata = cur.fetchall()
+            db.close()
             firstname = None
             lastname = None
             for x in logdata:
@@ -212,6 +217,7 @@ def logout():
 @app.route("/Home/")
 @app.route("/home")
 def home():
+    
     # print(session["firstname"], session["lastname"], session["user_id"], session["profilepic"], session["confirmedemail"])
     return render_template("home.html")
 
@@ -226,6 +232,7 @@ def userprofile():
     if "useremail" in session:
         cur.execute("SELECT facebooklink, twitterlink, instagramlink, githublink, userblurb FROM users WHERE user_id =?", [session["user_id"]])
         linkdata = cur.fetchone()
+        db.close()
         print(linkdata[0])
         facebooklink = linkdata[0]
         twitterlink = linkdata[1]
@@ -257,6 +264,7 @@ def profilepic():
     if "useremail" in session:
         cur.execute("SELECT confirmedemail FROM users WHERE user_id = ?", [session["user_id"]])
         verified = cur.fetchone()
+        db.close()
         verified = verified[0]
         print(verified)
         if verified == 0:
@@ -286,6 +294,7 @@ def ppupload():
             "SELECT profilepic FROM users WHERE user_id =?", [session["user_id"]]
         )
         picurl = cur.fetchone()
+        db.close()
         session["profilepic"] = str(picurl[0])
         flash("Profile Picutre Updated!")
         return redirect (url_for("home"))
@@ -299,6 +308,7 @@ def editprofile():
     if "useremail" in session:
         cur.execute("SELECT facebooklink, twitterlink, instagramlink, githublink, userblurb FROM users WHERE user_id =?", [session["user_id"]])
         data = cur.fetchone()
+        db.close()
         facebooklink = data[0]
         twitterlink = data[1]
         instagramlink = data[2]
@@ -343,6 +353,7 @@ def updateprofile():
                     " WHERE user_id =?",
                     [firstname, lastname, facebooklink, twitterlink, instagramlink, githublink, blurb, session["user_id"]])
         db.commit()
+        db.close()
         flash("User details updated")
         session["firstname"] = firstname
         session["lastname"] = lastname
@@ -376,6 +387,7 @@ def changepassword():
         if oldpass == veroldpass and password == verpassword:
             cur.execute("UPDATE users SET password = ? WHERE user_id = ?", [verpassword, session["user_id"]])
             db.commit()
+            db.close()
             flash("Password Updated!")
             return redirect(url_for('userprofile'))
         else:
@@ -392,6 +404,7 @@ def blogpost():
     if "useremail" in session:
         cur.execute("SELECT confirmedemail FROM users WHERE user_id = ?", [session["user_id"]])
         verified = cur.fetchone()
+        db.close()
         verified = verified[0]
         if verified == 0:
             print("not verified")
@@ -416,6 +429,7 @@ def uploadpost():
         cur.execute(
         "INSERT INTO posts (user_id, title, content, auther, timestamp) values (?,?,?,?,?)", (session["user_id"], title, content, auther, timestamp))
         db.commit()
+        db.close()
         print("success")
         flash("Post successfully uploaded!")
         return redirect(url_for('viewallposts'))
@@ -429,6 +443,7 @@ def viewallposts():
     cur = db.cursor()
     cur.execute("SELECT * FROM posts")
     rows = cur.fetchall()
+    db.close()
     return render_template("viewallposts.html", rows = rows)
 
 @app.route("/viewpost/<post_num>")
@@ -438,6 +453,7 @@ def viewpost(post_num):
     post_num = int(post_num)
     cur.execute("SELECT * FROM posts WHERE post_num = ?", [post_num])
     postdata = cur.fetchone()
+    db.close()
     user_id = None
     if "useremail" in session:
         user_id = session["user_id"]
@@ -456,6 +472,7 @@ def editpost():
         cur = db.cursor()
         cur.execute("SELECT * FROM posts WHERE post_num = ?", [session["post_num"]])
         postdata = cur.fetchone()
+        db.close()
         print(session["post_num"])
         print(postdata[0])
         return render_template('blogpostedit.html', postdata = postdata)
@@ -471,6 +488,7 @@ def editblogpost():
         timestamp = datetime.datetime.fromtimestamp(seconds).strftime('%Y-%m-%d %H:%M:%S')
         cur.execute("UPDATE posts SET title = ?, content = ?, timestamp = ?  WHERE post_num = ?", [title, content, timestamp, session["post_num"]])
         db.commit()
+        db.close()
         session.pop("post_num", None)
         flash("Post Updated")
         print("post updated")
@@ -488,6 +506,7 @@ def user(user_id):
     db.row_factory = sql.Row
     cur.execute("SELECT * FROM posts WHERE user_id = ?", [user_id])
     rows = cur.fetchall()
+    db.close()
     print(rows)
     return render_template("profiles.html", userdata=userdata, rows=rows)
 
@@ -508,6 +527,7 @@ def querypost():
                     "(timestamp IS null or timestamp LIKE '%' ||?|| '%') AND"
                     "(lower(auther) IS NULL or lower(auther) LIKE '%' ||?|| '%')", [title.lower(), timestamp, auther])
         rows = cur.fetchall()
+        db.close()
         return render_template("viewallposts.html", rows = rows)
 
 
@@ -525,11 +545,13 @@ def chat(chatnumber):
         newcontent = oldcontent + "\|/" + session["firstname"] + " " + session["lastname"] + ": " + content
         cur.execute("UPDATE chat SET content = ?", [newcontent])
         db.commit()
+        db.close()
         print("success")
         return redirect(url_for('chat', chatnumber = chatnumber))
     if request.method == "GET":
         cur.execute("SELECT * FROM chat WHERE chat_num = ?", [chatnumber])
         chatdata = cur.fetchone()
+        db.close()
         user_id1 = int(chatdata[1])
         user_id2 = int(chatdata[2])
         if session["user_id"] == user_id1 or user_id2:
@@ -562,6 +584,7 @@ def peoplequery():
         cur.execute("SELECT user_id, firstname, lastname, profilepic, userblurb FROM users WHERE (lower(firstname) IS null or lower(firstname) LIKE '%' ||?|| '%') AND"
                     "(lower(lastname) IS null or lower(lastname) LIKE '%' ||?|| '%')", [firstname.lower(), lastname.lower()])
         rows = cur.fetchall()
+        db.close()
         print(rows)
         flash("Search results:")
         return render_template("usersearchresults.html", rows = rows)
@@ -577,6 +600,7 @@ def viewchats():
     cur = db.cursor()
     cur.execute("SELECT chat_num, user1_id, user2_id from chat WHERE user1_id = ? OR user2_id = ?", [session["user_id"], session["user_id"]])
     rows = cur.fetchall()
+    db.close()
     print(rows)
     print(session["user_id"])
     return render_template("viewchats.html", rows = rows)
@@ -595,6 +619,7 @@ def createchat():
         print("success")
         cur.execute("SELECT chat_num FROM chat WHERE user1_id = ? AND user2_id = ?", [user1_id, user2_id])
         chatnumber = cur.fetchone()
+        db.close()
         chatnumber = chatnumber[0]
         return redirect(url_for('chat', chatnumber = chatnumber))
     else:

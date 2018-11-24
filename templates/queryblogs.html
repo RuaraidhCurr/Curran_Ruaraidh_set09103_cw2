@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="regBackground"></div>
-
 <form class ="querypostform" action="{{ url_for('querypost') }}" method="POST">
     <p>Blog Title:</p>
     <input type="text" placeholder="Blog title?" name="title">
